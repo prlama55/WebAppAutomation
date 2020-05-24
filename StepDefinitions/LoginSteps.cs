@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using WebAppAutomation.PageObjects;
@@ -25,7 +24,6 @@ namespace WebAppAutomation.StepDefinitions
             loginPage.NavigateToLoginPage(loginPageUrl);
         }
 
-
         [When(@"I enter Email and Password")]
         public void WhenIEnterEmailAndPassword(Table table)
         {
@@ -34,7 +32,6 @@ namespace WebAppAutomation.StepDefinitions
             string password = (string)data.Password;
             loginPage.EnterEmailAndPassword(email, password);
         }
-
 
         [When(@"I click on Login button")]
         public void WhenIClickOnLoginButton()

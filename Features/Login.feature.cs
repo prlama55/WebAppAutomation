@@ -22,7 +22,6 @@ namespace WebAppAutomation.Features
     [NUnit.Framework.DescriptionAttribute("Login")]
     [NUnit.Framework.CategoryAttribute("login")]
     [NUnit.Framework.CategoryAttribute("Browser:Chrome")]
-    [NUnit.Framework.CategoryAttribute("Browser:Firefox")]
     public partial class LoginFeature
     {
         
@@ -38,8 +37,7 @@ namespace WebAppAutomation.Features
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Login", "\tIn order to manage system\r\n\tAs a user\r\n\tI want to be able to login to the dashbo" +
                     "ard", ProgrammingLanguage.CSharp, new string[] {
                         "login",
-                        "Browser:Chrome",
-                        "Browser:Firefox"});
+                        "Browser:Chrome"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -91,63 +89,26 @@ namespace WebAppAutomation.Features
             testRunner.ScenarioContext.Add("Browser", "Chrome");
             this.ScenarioStart();
             testRunner.Given("I Navigate to the Login page \'https://demo.mycsf.net/Portal/Home/Login\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Email",
-                        "Password"});
-            table1.AddRow(new string[] {
-                        "actu4205@gmail.com",
-                        "Hitrust123!"});
-            testRunner.When("I enter Email and Password", ((string)(null)), table1, "When ");
-            testRunner.And("I click on Login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-            testRunner.Then("the header \'MY APPLICATIONS\' Should be seen on the Dashboard Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "AppLandingPage"});
-            table2.AddRow(new string[] {
-                        "https://demo.mycsf.net/Portal/Home/AppLanding"});
-            testRunner.And("I navigate to landing page", ((string)(null)), table2, "And ");
-            testRunner.And("I click on app button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "HomePage"});
-            table3.AddRow(new string[] {
-                        "https://demo.mycsf.net/Home3"});
-            testRunner.And("I navigate to home page", ((string)(null)), table3, "And ");
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Successful Login by User: Firefox")]
-        [NUnit.Framework.CategoryAttribute("Browser:Firefox")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("loginSuccess")]
-        public virtual void SuccessfulLoginByUser_Firefox()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successful Login by User", null, new string[] {
-                        "regression",
-                        "loginSuccess"});
-            this.ScenarioInitialize(scenarioInfo);
-            testRunner.ScenarioContext.Add("Browser", "Firefox");
-            this.ScenarioStart();
-            testRunner.Given("I Navigate to the Login page \'https://demo.mycsf.net/Portal/Home/Login\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Email",
-                        "Password"});
-            table4.AddRow(new string[] {
-                        "actu4205@gmail.com",
-                        "Hitrust123!"});
-            testRunner.When("I enter Email and Password", ((string)(null)), table4, "When ");
-            testRunner.And("I click on Login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-            testRunner.Then("the header \'MY APPLICATIONS\' Should be seen on the Dashboard Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                        "AppLandingPage"});
-            table5.AddRow(new string[] {
-                        "https://demo.mycsf.net/Portal/Home/AppLanding"});
-            testRunner.And("I navigate to landing page", ((string)(null)), table5, "And ");
-            testRunner.And("I click on app button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
-                        "HomePage"});
+                        "Email",
+                        "Password"});
             table6.AddRow(new string[] {
+                        "actu4205@gmail.com",
+                        "Hitrust123!"});
+            testRunner.When("I enter Email and Password", ((string)(null)), table6, "When ");
+            testRunner.And("I click on Login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+            testRunner.Then("the header \'MY APPLICATIONS\' Should be seen on the Dashboard Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "AppLandingPage"});
+            table7.AddRow(new string[] {
+                        "https://demo.mycsf.net/Portal/Home/AppLanding"});
+            testRunner.And("I navigate to landing page", ((string)(null)), table7, "And ");
+            testRunner.And("I click on app button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "HomePage"});
+            table8.AddRow(new string[] {
                         "https://demo.mycsf.net/Home3"});
-            testRunner.And("I navigate to home page", ((string)(null)), table6, "And ");
+            testRunner.And("I navigate to home page", ((string)(null)), table8, "And ");
             this.ScenarioCleanup();
         }
         
@@ -165,39 +126,13 @@ namespace WebAppAutomation.Features
             testRunner.ScenarioContext.Add("Browser", "Chrome");
             this.ScenarioStart();
             testRunner.Given("I Navigate to the Login page \'https://demo.mycsf.net/Portal/Home/Login\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
                         "Password"});
-            table7.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "actu42051@gmail.com",
                         "Hitrust12321!"});
-            testRunner.When("I enter Email and Password", ((string)(null)), table7, "When ");
-            testRunner.And("I click on Login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-            testRunner.Then("the error message \'Incorrect username or password.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Invalid Email and Password: Firefox")]
-        [NUnit.Framework.CategoryAttribute("Browser:Firefox")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("loginFail")]
-        public virtual void InvalidEmailAndPassword_Firefox()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invalid Email and Password", null, new string[] {
-                        "regression",
-                        "loginFail"});
-            this.ScenarioInitialize(scenarioInfo);
-            testRunner.ScenarioContext.Add("Browser", "Firefox");
-            this.ScenarioStart();
-            testRunner.Given("I Navigate to the Login page \'https://demo.mycsf.net/Portal/Home/Login\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Email",
-                        "Password"});
-            table8.AddRow(new string[] {
-                        "actu42051@gmail.com",
-                        "Hitrust12321!"});
-            testRunner.When("I enter Email and Password", ((string)(null)), table8, "When ");
+            testRunner.When("I enter Email and Password", ((string)(null)), table9, "When ");
             testRunner.And("I click on Login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
             testRunner.Then("the error message \'Incorrect username or password.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
             this.ScenarioCleanup();
