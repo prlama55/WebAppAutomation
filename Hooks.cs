@@ -7,6 +7,7 @@ using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports.Gherkin.Model;
 using System;
+using AventStack.ExtentReports.Reporter.Configuration;
 
 namespace WebAppAutomation
 {
@@ -15,131 +16,116 @@ namespace WebAppAutomation
     {
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
         //Global Variable for Extend report
-        private static ExtentTest featureName;
-        private static ExtentTest scenario;
-        private static ExtentReports extentReport;
+        private static FeatureContext _featureContext;
+        private static ScenarioContext _scenarioContext;
+        private static ExtentReports _extentReport;
+        private static ExtentHtmlReporter _extentHtmlReporter;
+        private static ExtentTest _feature;
+        private static ExtentTest _scenario;
+        private readonly IObjectContainer _objectContainer;
+        private IWebDriver _driver;
 
-        private readonly IObjectContainer objectContainer;
-        private readonly ScenarioContext scenarioContext;
-        private IWebDriver driver;
-
-        public Hooks(IObjectContainer _objectContainer, ScenarioContext _scenarioContext)
+        public Hooks(IObjectContainer objectContainer)
         {
-            objectContainer = _objectContainer;
-            scenarioContext = _scenarioContext;
-        }
-
-        [BeforeScenario]
-        public void BeforeScenario()
-        {
-            scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title);
-            scenarioContext.TryGetValue("Browser", out var browser);
-            switch (browser)
-            {
-                case "Firefox":
-                    driver = new FirefoxDriver();
-                    break;
-                default:
-                    ChromeOptions option = new ChromeOptions();
-                    driver = new ChromeDriver(option);
-                    break;
-            }
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            scenarioContext.ScenarioContainer.RegisterInstanceAs<IWebDriver>(driver);
-            objectContainer.RegisterInstanceAs<IWebDriver>(driver);
-        }
-
-        [AfterScenario]
-        public void AfterScenario()
-        {
-            driver.Quit();
-            driver.Dispose();
+            _objectContainer = objectContainer;
         }
 
         [BeforeTestRun]
         public static void BeforeTest()
         {
-            ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(@"D:\Projects\Automation\WebAppAutomation\Reports\index.html");
-            htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
-            extentReport = new ExtentReports();
-            extentReport.AttachReporter(htmlReporter);
-        }
-        [AfterTestRun]
-        public static void AfterTest()
-        {
-            extentReport.Flush();
+            string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+            string actualPath = path.Substring(0, path.LastIndexOf("bin"));
+            string projectPath = new Uri(actualPath).LocalPath;
+            Console.WriteLine("projectPath=====", projectPath);
+            _extentHtmlReporter = new ExtentHtmlReporter(projectPath);
+           _extentHtmlReporter.Config.Theme = Theme.Standard;
+            _extentReport = new ExtentReports();
+            _extentReport.AttachReporter(_extentHtmlReporter);
         }
 
         [BeforeFeature]
         public static void BeforeFeature(FeatureContext featureContext)
         {
-            featureName = extentReport.CreateTest<Feature>(featureContext.FeatureInfo.Title);
+            if (featureContext != null)
+            {
+                _featureContext = featureContext;
+                _feature = _extentReport.CreateTest<Feature>(featureContext.FeatureInfo.Title);
+            }
+        }
+
+        [BeforeScenario]
+        public void BeforeScenario(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+
+            if (scenarioContext != null)
+            {
+                _scenarioContext = scenarioContext;
+                _scenario = _feature.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title);
+            }
+            scenarioContext.TryGetValue("Browser", out var browser);
+            Console.WriteLine("browser===", browser);
+            switch (browser)
+            {
+                case "Firefox":
+                    _driver = new FirefoxDriver();
+                    break;
+                default:
+                    ChromeOptions option = new ChromeOptions();
+                    _driver = new ChromeDriver(option);
+                    break;
+            }
+            //driver.Manage().Window.Maximize();
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            _objectContainer.RegisterInstanceAs<IWebDriver>(_driver);
         }
 
         [AfterStep]
         public static void AfterSteps()
         {
-            var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
-            if (ScenarioContext.Current.TestError == null)
+            ScenarioBlock scenarioBlock = _scenarioContext.CurrentScenarioBlock;
+            switch (scenarioBlock)
             {
-                switch (stepType)
-                {
-                    case "Given":
-                        scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text);
-                        break;
-                    case "When":
-                        scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text);
-                        break;
-                    case "Then":
-                        scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text);
-                        break;
-                    case "And":
-                        scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text);
-                        break;
-                    default:
-                        break;
-
-                }
-            }
-            else if (ScenarioContext.Current.TestError != null)
-            {
-                switch (stepType)
-                {
-                    case "Given":
-                        scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.InnerException);
-                        break;
-                    case "When":
-                        scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.InnerException);
-                        break;
-                    case "Then":
-                        scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.Message);
-                        break;
-                    default:
-                        break;
-
-                }
-            }
-            else
-            {
-                switch (stepType)
-                {
-                    case "Given":
-                        scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Skip("Step Definition Pending");
-                        break;
-                    case "When":
-                        scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Skip("Step Definition Pending");
-                        break;
-                    case "Then":
-                        scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Skip("Step Definition Pending");
-                        break;
-                    default:
-                        break;
-
-                }
+                case ScenarioBlock.Given:
+                    if (_scenarioContext.TestError != null)
+                        _scenario.CreateNode<Given>(_scenarioContext.TestError.Message).Fail("\n" + _scenarioContext.TestError.StackTrace);
+                    else
+                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Pass("");
+                    break;
+                case ScenarioBlock.When:
+                    if (_scenarioContext.TestError != null)
+                        _scenario.CreateNode<When>(_scenarioContext.TestError.Message).Fail("\n" + _scenarioContext.TestError.StackTrace);
+                    else
+                        _scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Pass("");
+                    break;
+                case ScenarioBlock.Then:
+                    if (_scenarioContext.TestError != null)
+                        _scenario.CreateNode<Then>(_scenarioContext.TestError.Message).Fail("\n" + _scenarioContext.TestError.StackTrace);
+                    else
+                        _scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Pass("");
+                    break;
+                default:
+                    if (_scenarioContext.TestError != null)
+                        _scenario.CreateNode<And>(_scenarioContext.TestError.Message).Fail("\n" + _scenarioContext.TestError.StackTrace);
+                    else
+                        _scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Pass("");
+                    break;
 
             }
+        }
 
+
+        [AfterScenario]
+        public void AfterScenario()
+        {
+            _driver.Quit();
+           // _driver.Dispose();
+        }
+
+        [AfterTestRun]
+        public static void AfterTest()
+        {
+            _extentReport.Flush();
         }
     }
 }

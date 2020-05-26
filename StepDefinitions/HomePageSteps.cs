@@ -30,15 +30,15 @@ namespace WebAppAutomation.StepDefinitions
         public void ThenThereShouldBeNavBars(Table table)
         {
             var navBars = TableExtensions.ToArray(table);
+            homePage.NavBarMenus(navBars);
             Console.WriteLine(navBars);
-
         }
 
         [Then(@"the static texts are")]
         public void ThenTheStaticTextsAre(Table table)
         {
             var texts = TableExtensions.ToArray(table);
-            homePage.getNavBars(texts);
+            homePage.HomePageTexts(texts);
             Console.WriteLine(texts);
         }
 

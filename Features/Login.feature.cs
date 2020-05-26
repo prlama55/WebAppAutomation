@@ -89,26 +89,26 @@ namespace WebAppAutomation.Features
             testRunner.ScenarioContext.Add("Browser", "Chrome");
             this.ScenarioStart();
             testRunner.Given("I Navigate to the Login page \'https://demo.mycsf.net/Portal/Home/Login\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
                         "Password"});
-            table6.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "actu4205@gmail.com",
                         "Hitrust123!"});
-            testRunner.When("I enter Email and Password", ((string)(null)), table6, "When ");
+            testRunner.When("I enter Email and Password", ((string)(null)), table9, "When ");
             testRunner.And("I click on Login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
             testRunner.Then("the header \'MY APPLICATIONS\' Should be seen on the Dashboard Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                         "AppLandingPage"});
-            table7.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "https://demo.mycsf.net/Portal/Home/AppLanding"});
-            testRunner.And("I navigate to landing page", ((string)(null)), table7, "And ");
+            testRunner.And("I navigate to landing page", ((string)(null)), table10, "And ");
             testRunner.And("I click on app button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                         "HomePage"});
-            table8.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "https://demo.mycsf.net/Home3"});
-            testRunner.And("I navigate to home page", ((string)(null)), table8, "And ");
+            testRunner.And("I navigate to home page", ((string)(null)), table11, "And ");
             this.ScenarioCleanup();
         }
         
@@ -126,13 +126,13 @@ namespace WebAppAutomation.Features
             testRunner.ScenarioContext.Add("Browser", "Chrome");
             this.ScenarioStart();
             testRunner.Given("I Navigate to the Login page \'https://demo.mycsf.net/Portal/Home/Login\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
                         "Password"});
-            table9.AddRow(new string[] {
+            table12.AddRow(new string[] {
                         "actu42051@gmail.com",
                         "Hitrust12321!"});
-            testRunner.When("I enter Email and Password", ((string)(null)), table9, "When ");
+            testRunner.When("I enter Email and Password", ((string)(null)), table12, "When ");
             testRunner.And("I click on Login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
             testRunner.Then("the error message \'Incorrect username or password.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
             this.ScenarioCleanup();

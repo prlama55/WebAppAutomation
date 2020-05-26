@@ -21,7 +21,8 @@ namespace WebAppAutomation.Utilities
             var list = new List<string>();
             foreach (var row in table.Rows)
             {
-                list.Add(row[0]);
+                var text = row[0];
+                list.Add(text);
             }
             return list;
         }

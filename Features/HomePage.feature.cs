@@ -22,6 +22,7 @@ namespace WebAppAutomation.Features
     [NUnit.Framework.DescriptionAttribute("HomePage")]
     [NUnit.Framework.CategoryAttribute("HomePage")]
     [NUnit.Framework.CategoryAttribute("Browser:Chrome")]
+    [NUnit.Framework.CategoryAttribute("Browser:Firefox")]
     public partial class HomePageFeature
     {
         
@@ -37,7 +38,8 @@ namespace WebAppAutomation.Features
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "HomePage", "\tIn order to test static contents\r\n\tI successfully logged in\r\n\tI navigate to home" +
                     " page\r\n\tI check static contents", ProgrammingLanguage.CSharp, new string[] {
                         "HomePage",
-                        "Browser:Chrome"});
+                        "Browser:Chrome",
+                        "Browser:Firefox"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -137,6 +139,52 @@ namespace WebAppAutomation.Features
             table5.AddRow(new string[] {
                         "BULLETINS"});
             testRunner.And("the static texts are", ((string)(null)), table5, "And ");
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Home page automation: Firefox")]
+        [NUnit.Framework.CategoryAttribute("Browser:Firefox")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void HomePageAutomation_Firefox()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Home page automation", null, new string[] {
+                        "regression"});
+            this.ScenarioInitialize(scenarioInfo);
+            testRunner.ScenarioContext.Add("Browser", "Firefox");
+            this.ScenarioStart();
+            this.FeatureBackground();
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "HomePage"});
+            table6.AddRow(new string[] {
+                        "https://demo.mycsf.net/Home3"});
+            testRunner.Given("navigate to home page", ((string)(null)), table6, "Given ");
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "NavBars"});
+            table7.AddRow(new string[] {
+                        "HOME"});
+            table7.AddRow(new string[] {
+                        "REFERENCES"});
+            table7.AddRow(new string[] {
+                        "ANALYTICS"});
+            table7.AddRow(new string[] {
+                        "CORRECTIVE ACTION PLANS"});
+            table7.AddRow(new string[] {
+                        "ADMINISTRATION"});
+            table7.AddRow(new string[] {
+                        "SEARCH"});
+            testRunner.Then("there should be nav bars", ((string)(null)), table7, "Then ");
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Texts"});
+            table8.AddRow(new string[] {
+                        "YOUR NOTIFICATIONS"});
+            table8.AddRow(new string[] {
+                        "ASSESSMENTS"});
+            table8.AddRow(new string[] {
+                        "CUSTOM LIBRARIES"});
+            table8.AddRow(new string[] {
+                        "BULLETINS"});
+            testRunner.And("the static texts are", ((string)(null)), table8, "And ");
             this.ScenarioCleanup();
         }
     }

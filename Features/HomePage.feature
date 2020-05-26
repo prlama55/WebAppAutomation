@@ -1,5 +1,6 @@
 ﻿@HomePage
 @Browser:Chrome
+@Browser:Firefox
 Feature: HomePage
 	In order to test static contents
 	I successfully logged in

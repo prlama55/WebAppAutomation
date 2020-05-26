@@ -9,8 +9,6 @@
     "variantkey": "Browser"
   },
   "stepAssemblies": [
-    { "assembly": "SpecFlow.Contrib.Variants.IntegrationTests.SharedBindings" },
-    { "assembly": "Parallelizable(ParallelScope.Fixtures)" },
-    { "assembly": "LevelOfParallelism(2)" }
+    { "assembly": "SpecFlow.Contrib.Variants.IntegrationTests.SharedBindings" }
   ]
 }

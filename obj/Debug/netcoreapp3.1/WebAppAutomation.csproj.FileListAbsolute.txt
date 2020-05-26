@@ -5,7 +5,6 @@ D:\Projects\Automation\WebAppAutomation\bin\Debug\netcoreapp3.1\NUnit3.TestAdapt
 D:\Projects\Automation\WebAppAutomation\bin\Debug\netcoreapp3.1\nunit.engine.dll
 D:\Projects\Automation\WebAppAutomation\bin\Debug\netcoreapp3.1\nunit.engine.api.dll
 D:\Projects\Automation\WebAppAutomation\bin\Debug\netcoreapp3.1\testhost.exe
-D:\Projects\Automation\WebAppAutomation\bin\Debug\netcoreapp3.1\WebAppAutomation.dll.config
 D:\Projects\Automation\WebAppAutomation\bin\Debug\netcoreapp3.1\WebAppAutomation.deps.json
 D:\Projects\Automation\WebAppAutomation\bin\Debug\netcoreapp3.1\WebAppAutomation.runtimeconfig.json
 D:\Projects\Automation\WebAppAutomation\bin\Debug\netcoreapp3.1\WebAppAutomation.runtimeconfig.dev.json
@@ -118,4 +117,3 @@ D:\Projects\Automation\WebAppAutomation\obj\Debug\netcoreapp3.1\WebAppAutomation
 D:\Projects\Automation\WebAppAutomation\obj\Debug\netcoreapp3.1\WebAppAutomation.dll
 D:\Projects\Automation\WebAppAutomation\obj\Debug\netcoreapp3.1\WebAppAutomation.pdb
 D:\Projects\Automation\WebAppAutomation\obj\Debug\netcoreapp3.1\WebAppAutomation.genruntimeconfig.cache
-D:\Projects\Automation\WebAppAutomation\obj\Debug\netcoreapp3.1\WebAppAutomation.csprojAssemblyReference.cache
