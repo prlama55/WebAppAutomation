@@ -8,21 +8,21 @@ Feature: HomePage
 	I check static contents
 
 Background:
-	Given I Navigate to the Login page 'https://demo.mycsf.net/Portal/Home/Login'
+	Given I Navigate to the Login page '<Login_page>'
 	When I enter Email and Password
 	| Email              | Password    |
-	| actu4205@gmail.com | Hitrust123! |
+	| xxxxx@gmail.com | pw! |
 	And I click on Login button
 	Then I navigate to landing page
 	| AppLandingPage                                |
-	| https://demo.mycsf.net/Portal/Home/AppLanding |
+	| <AppLanding_page> |
 	And I click on app button
 
 @regression
 Scenario: Home page automation
 	Given navigate to home page
 	| HomePage                     |
-	| https://demo.mycsf.net/Home3 |
+	| <Home_page> |
 	Then there should be nav bars
 	| NavBars                 |
 	| HOME                    |
